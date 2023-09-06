@@ -1,5 +1,6 @@
 package com.yangdai.colorpickerlib.sliders;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -41,6 +42,7 @@ public class BrightnessSlider extends BaseSlider {
 
     @Override
     protected void getAttrs(AttributeSet attrs) {
+        @SuppressLint("CustomViewStyleable")
         TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.BrightnessSlideBar);
         try {
             if (a.hasValue(R.styleable.BrightnessSlideBar_selector_BrightnessSlider)) {
@@ -79,8 +81,7 @@ public class BrightnessSlider extends BaseSlider {
 
     @Override
     public void onInflateFinished() {
-        selector.post(
-                () -> {
+        selector.post(() -> {
                     int defaultPosition = getWidth() - selector.getWidth();
 
                     if (getPreferenceName() != null) {

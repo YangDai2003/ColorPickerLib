@@ -24,7 +24,7 @@
             <!-- 当用户点击时始终触发监听器。 -->
             <enum name="always" value="0" />
             <!-- 仅在用户释放点击时触发监听器的最后一个颜色。 -->
-            <enum name="last" value="1" />
+            <enum name="after" value="1" />
         </attr>
     </declare-styleable>
     <declare-styleable name="AlphaSlideBar">

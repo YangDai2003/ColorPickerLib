@@ -16,8 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 /**
- * ColorHsvPalette is a default drawable palette built by HSV (hue, saturation, value) color model
- * for alternating representations of the RGB color model.
+ * ColorPalette 是一个使用（色调、饱和度、明度）颜色模型构建的默认可绘制调色板，
+ * 用于交替表示 RGB 颜色模型。
  */
 public class ColorPalette extends BitmapDrawable {
 

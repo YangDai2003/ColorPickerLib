@@ -260,6 +260,7 @@ abstract class BaseSlider extends FrameLayout {
                             public void onGlobalLayout() {
                                 getViewTreeObserver().removeOnGlobalLayoutListener(this);
                                 onInflateFinished();
+                                setSelectorPosition(selectorPosition); // Add this line
                             }
                         });
     }

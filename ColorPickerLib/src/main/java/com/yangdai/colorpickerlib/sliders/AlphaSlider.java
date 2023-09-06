@@ -99,15 +99,18 @@ public class AlphaSlider extends BaseSlider {
 
     @Override
     public void onInflateFinished() {
-        int defaultPosition = getWidth() - selector.getWidth();
-        if (getPreferenceName() != null) {
-            updateSelectorX(
-                    ColorPickerPreferenceManager.getInstance(getContext())
-                            .getAlphaSliderPosition(getPreferenceName(), defaultPosition)
-                            + getSelectorSize() / 2);
-        } else {
-            selector.setX(defaultPosition);
-        }
+        selector.post(() -> {
+            int defaultPosition = getWidth() - selector.getWidth();
+
+            if (getPreferenceName() != null) {
+                updateSelectorX(
+                        ColorPickerPreferenceManager.getInstance(getContext())
+                                .getBrightnessSliderPosition(getPreferenceName(), defaultPosition)
+                                + getSelectorSize() / 2);
+            } else {
+                selector.setX(defaultPosition);
+            }
+        });
     }
 
     @SuppressLint("DrawAllocation")

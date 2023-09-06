@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.CustomColorPicker" parent="Theme.AppCompat.DayNight">
         <!-- Customize your light theme here. -->
@@ -7,8 +7,8 @@
 
     <style name="Theme.CustomColorPicker" parent="Base.Theme.CustomColorPicker" />
 
-    <style name="CustomDialog" parent="Theme.AppCompat.DayNight.Dialog">
-        <item name="android:windowBackground">@drawable/dialog_rounded_corners</item>
+    <style name="CustomDialog" parent="Theme.AppCompat.DayNight.Dialog.Alert">
+        <item name="android:dialogCornerRadius" tools:targetApi="p">32dp</item>
     </style>
 
 </resources>

@@ -3,7 +3,7 @@ package com.yangdai.colorpickerlib;
 import androidx.annotation.ColorInt;
 
 /**
- * ColorEnvelope 是颜色的包装类，用于提供颜色的不同形式。
+ * ColorInfo 是颜色的包装类，用于提供颜色的不同形式。
  */
 @SuppressWarnings("unused")
 public class ColorInfo {

@@ -137,8 +137,7 @@ public class ColorPickerDialog extends AlertDialog {
          * @param colorListener {@link ColorChangeListener}.
          * @return {@link Builder}.
          */
-        public Builder setPositiveButton(
-                CharSequence text, final ColorListener colorListener) {
+        public Builder setPositiveButton(CharSequence text, final ColorListener colorListener) {
             super.setPositiveButton(text, getOnClickListener(colorListener));
             return this;
         }
@@ -161,7 +160,7 @@ public class ColorPickerDialog extends AlertDialog {
                     ((ColorChangeListener) colorListener).onColorChanged(getColorPickerView().getColor(), true);
                 } else if (colorListener instanceof ColorSelectionListener) {
                     ((ColorSelectionListener) colorListener)
-                            .onColorSelected(getColorPickerView().getColorEnvelope(), true);
+                            .onColorSelected(getColorPickerView().getColorInfo(), true);
                 }
                 if (getColorPickerView() != null) {
                     ColorPickerPreferenceManager.getInstance(getContext())

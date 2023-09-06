@@ -458,7 +458,7 @@ public class ColorPickerView extends FrameLayout implements LifecycleObserver {
      *
      * @return {@link ColorInfo}.
      */
-    public ColorInfo getColorEnvelope() {
+    public ColorInfo getColorInfo() {
         return new ColorInfo(getColor());
     }
 
