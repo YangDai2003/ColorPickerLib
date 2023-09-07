@@ -1,7 +1,6 @@
 package com.yangdai.colorpickerlib;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -305,65 +304,9 @@ public class ColorPickerDialog extends AlertDialog {
         }
 
         @Override
-        public Builder setItems(int itemsId, OnClickListener listener) {
-            super.setItems(itemsId, listener);
-            return this;
-        }
-
-        @Override
-        public Builder setItems(CharSequence[] items, OnClickListener listener) {
-            super.setItems(items, listener);
-            return this;
-        }
-
-        @Override
         public Builder setAdapter(ListAdapter adapter, OnClickListener listener) {
             super.setAdapter(adapter, listener);
             return this;
         }
-
-        @Override
-        public Builder setCursor(Cursor cursor, OnClickListener listener, String labelColumn) {
-            super.setCursor(cursor, listener, labelColumn);
-            return this;
-        }
-
-        @Override
-        public Builder setMultiChoiceItems(
-                int itemsId, boolean[] checkedItems, OnMultiChoiceClickListener listener) {
-            super.setMultiChoiceItems(itemsId, checkedItems, listener);
-            return this;
-        }
-
-        @Override
-        public Builder setMultiChoiceItems(
-                CharSequence[] items, boolean[] checkedItems, OnMultiChoiceClickListener listener) {
-            super.setMultiChoiceItems(items, checkedItems, listener);
-            return this;
-        }
-
-        @Override
-        public Builder setMultiChoiceItems(
-                Cursor cursor,
-                String isCheckedColumn,
-                String labelColumn,
-                OnMultiChoiceClickListener listener) {
-            super.setMultiChoiceItems(cursor, isCheckedColumn, labelColumn, listener);
-            return this;
-        }
-
-        @Override
-        public Builder setSingleChoiceItems(int itemsId, int checkedItem, OnClickListener listener) {
-            super.setSingleChoiceItems(itemsId, checkedItem, listener);
-            return this;
-        }
-
-        @Override
-        public Builder setSingleChoiceItems(
-                Cursor cursor, int checkedItem, String labelColumn, OnClickListener listener) {
-            super.setSingleChoiceItems(cursor, checkedItem, labelColumn, listener);
-            return this;
-        }
-
     }
 }

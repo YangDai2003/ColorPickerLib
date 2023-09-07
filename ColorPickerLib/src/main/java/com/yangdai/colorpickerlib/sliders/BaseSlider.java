@@ -186,7 +186,7 @@ abstract class BaseSlider extends FrameLayout {
         Point snapPoint = new Point((int) event.getX(), (int) event.getY());
         selectedX = (int) getBoundaryX(snapPoint.x);
         selector.setX(selectedX);
-        if (colorPickerView.getActionMode() == UpdateMode.After) {
+        if (colorPickerView.getUpdateMode() == UpdateMode.After) {
             if (event.getAction() == MotionEvent.ACTION_UP) {
                 colorPickerView.fireColorListener(assembleColor(), true);
             }

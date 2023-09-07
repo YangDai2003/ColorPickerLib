@@ -29,10 +29,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.Px;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.ContextCompat;
-import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LifecycleObserver;
+import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.OnLifecycleEvent;
 
 import com.yangdai.colorpickerlib.interfaces.ColorSelectionListener;
 import com.yangdai.colorpickerlib.interfaces.ColorChangeListener;
@@ -44,7 +42,7 @@ import com.yangdai.colorpickerlib.sliders.BrightnessSlider;
 
 
 @SuppressWarnings("unused")
-public class ColorPickerView extends FrameLayout implements LifecycleObserver {
+public class ColorPickerView extends FrameLayout implements DefaultLifecycleObserver {
 
     @ColorInt
     private int selectedPureColor;
@@ -130,10 +128,10 @@ public class ColorPickerView extends FrameLayout implements LifecycleObserver {
                         a.getBoolean(R.styleable.ColorPickerView_flag_isFlipAble, flag_isFlipAble);
             }
             if (a.hasValue(R.styleable.ColorPickerView_updateMode)) {
-                int actionMode = a.getInteger(R.styleable.ColorPickerView_updateMode, 0);
-                if (actionMode == 0) {
+                int updateMode = a.getInteger(R.styleable.ColorPickerView_updateMode, 0);
+                if (updateMode == 0) {
                     this.updateMode = UpdateMode.ALWAYS;
-                } else if (actionMode == 1) {
+                } else if (updateMode == 1) {
                     this.updateMode = UpdateMode.After;
                 }
             }
@@ -740,7 +738,7 @@ public class ColorPickerView extends FrameLayout implements LifecycleObserver {
      *
      * @return {@link UpdateMode}.
      */
-    public UpdateMode getActionMode() {
+    public UpdateMode getUpdateMode() {
         return this.updateMode;
     }
 
@@ -749,7 +747,7 @@ public class ColorPickerView extends FrameLayout implements LifecycleObserver {
      *
      * @param updateMode {@link UpdateMode}.
      */
-    public void setActionMode(UpdateMode updateMode) {
+    public void setUpdateMode(UpdateMode updateMode) {
         this.updateMode = updateMode;
     }
 
@@ -849,8 +847,9 @@ public class ColorPickerView extends FrameLayout implements LifecycleObserver {
      * <p>OnDestroy would be called on the {@link LifecycleOwner}, all of the color picker data will
      * be saved automatically.
      */
-    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-    public void onDestroy() {
+    @Override
+    public void onDestroy(@NonNull LifecycleOwner owner) {
+        DefaultLifecycleObserver.super.onDestroy(owner);
         preferenceManager.saveColorPickerData(this);
     }
 
@@ -915,7 +914,7 @@ public class ColorPickerView extends FrameLayout implements LifecycleObserver {
             return this;
         }
 
-        public Builder setActionMode(UpdateMode updateMode) {
+        public Builder setUpdateMode(UpdateMode updateMode) {
             this.updateMode = updateMode;
             return this;
         }
