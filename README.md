@@ -46,8 +46,8 @@ Maven
 
 ```code
 <dependency>
-	<groupId>com.github.YangDai2003</groupId>
-	<artifactId>ColorPickerLib</artifactId>
-	<version>latest_version</version>
+    <groupId>com.github.YangDai2003</groupId>
+    <artifactId>ColorPickerLib</artifactId>
+    <version>latest_version</version>
 </dependency>
 ```
