@@ -105,7 +105,10 @@ public class ColorPickerDialog extends AlertDialog {
             colorPickerDialog.setPositiveButton(text, listener);
             return this;
         }
-
+        public Builder setPositiveButton(int textId, ColorSelectionListener listener) {
+            colorPickerDialog.setPositiveButton(textId, listener);
+            return this;
+        }
         @Override
         public Builder setPositiveButton(CharSequence text, OnClickListener listener) {
             colorPickerDialog.setPositiveButton(text, listener);
