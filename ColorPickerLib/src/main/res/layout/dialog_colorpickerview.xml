@@ -1,55 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+    <com.yangdai.colorpickerlib.ColorPickerView
+        android:id="@+id/colorPickerView"
+        android:layout_width="260dp"
+        android:layout_height="260dp"
+        android:layout_gravity="center"
+        android:layout_margin="20dp" />
 
-        <FrameLayout
-            android:id="@+id/colorPickerViewFrame"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.yangdai.colorpickerlib.ColorPickerView
-                android:id="@+id/colorPickerView"
-                android:layout_width="280dp"
-                android:layout_height="280dp"
-                android:layout_gravity="center"
-                android:layout_margin="20dp"
-                app:selector="@drawable/dot" />
-
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/alphaSliderFrame"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.yangdai.colorpickerlib.sliders.AlphaSlider
-                android:id="@+id/alphaSlider"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                app:selector_AlphaSlideBar="@drawable/dot" />
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/brightnessSliderFrame"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.yangdai.colorpickerlib.sliders.BrightnessSlider
-                android:id="@+id/brightnessSlider"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                app:selector_BrightnessSlider="@drawable/dot" />
-        </FrameLayout>
-
-    </LinearLayout>
-
-</ScrollView>
+</LinearLayout>

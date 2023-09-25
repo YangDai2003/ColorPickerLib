@@ -1,13 +1,11 @@
-package com.yangdai.colorpickerlib.interfaces;
-
-import com.yangdai.colorpickerlib.ColorInfo;
+package com.yangdai.colorpickerlib;
 
 /**
  * 颜色选择监听器接口，用于监听颜色选择事件。
  *
  * @author 30415
  */
-public interface ColorSelectionListener extends ColorListener {
+public interface ColorSelectionListener {
 
     /**
      * 当颜色被选择时调用。

@@ -1,8 +1,6 @@
 package com.yangdai.colorpickerlib;
 
-import android.content.Context;
 import android.graphics.Color;
-import android.util.TypedValue;
 
 import androidx.annotation.ColorInt;
 
@@ -31,6 +29,7 @@ class Utils {
      *
      * @param color 颜色值。
      * @return ARGB整数数组。
+     * @noinspection AlibabaLowerCamelCaseVariableNaming
      */
     public static int[] getColorARGB(@ColorInt int color) {
         int[] argb = new int[4];
@@ -39,16 +38,5 @@ class Utils {
         argb[2] = Color.green(color);
         argb[3] = Color.blue(color);
         return argb;
-    }
-
-    /**
-     * dp 转 px.
-     */
-    public static int dp2Px(Context context, int dp) {
-        return (int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP,
-                dp,
-                context.getResources().getDisplayMetrics()
-        );
     }
 }

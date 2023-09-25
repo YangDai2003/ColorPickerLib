@@ -6,10 +6,14 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.yangdai.colorpickerlib.ColorPickerDialog;
-import com.yangdai.colorpickerlib.interfaces.ColorSelectionListener;
+import com.yangdai.colorpickerlib.ColorSelectionListener;
 
+/**
+ * @author 30415
+ */
 public class MainActivity extends AppCompatActivity {
     TextView textView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,11 +27,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void showDialog() {
         new ColorPickerDialog.Builder(this)
-                .attachAlphaSlideBar(true)
-                .attachBrightnessSlideBar(true)
-                .setPositiveButton(android.R.string.ok, (ColorSelectionListener) (colorInfo, fromUser) -> textView.setText(colorInfo.getHexCode()))
-                .setNegativeButton(android.R.string.cancel, null)
-                .setCancelable(false)
+                .setIcon(android.R.drawable.sym_def_app_icon)
+                .setTitle("选择颜色")
+                .setPositiveButton("确定", (ColorSelectionListener) (colorInfo, fromUser) -> {
+                    textView.setText(colorInfo.getHexCode());
+                    textView.setTextColor(colorInfo.getColor());
+                })
+                .create()
                 .show();
+//        ColorPickerDialog colorPickerDialog = new ColorPickerDialog(this);
+//        colorPickerDialog.show();
     }
 }

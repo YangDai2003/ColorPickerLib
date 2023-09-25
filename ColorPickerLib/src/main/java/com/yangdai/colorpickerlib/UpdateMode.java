@@ -16,5 +16,5 @@ public enum UpdateMode {
     /**
      * 交互完成后更新.
      */
-    After
+    AFTER
 }

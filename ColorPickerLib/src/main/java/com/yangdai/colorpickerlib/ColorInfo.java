@@ -4,6 +4,8 @@ import androidx.annotation.ColorInt;
 
 /**
  * ColorInfo 是颜色的包装类，用于提供颜色的不同形式。
+ *
+ * @author 30415
  */
 @SuppressWarnings("unused")
 public class ColorInfo {

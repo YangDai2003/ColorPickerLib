@@ -1,7 +1,6 @@
 package com.yangdai.colorpickerlib;
 
-import android.content.res.Resources;
-import android.graphics.Bitmap;
+
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
@@ -10,7 +9,7 @@ import android.graphics.PixelFormat;
 import android.graphics.RadialGradient;
 import android.graphics.Shader;
 import android.graphics.SweepGradient;
-import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,14 +17,14 @@ import androidx.annotation.Nullable;
 /**
  * ColorPalette 是一个使用（色调、饱和度、明度）颜色模型构建的默认可绘制调色板，
  * 用于交替表示 RGB 颜色模型。
+ * @author 30415
  */
-public class ColorPalette extends BitmapDrawable {
+public class ColorPalette extends Drawable {
 
     private final Paint huePaint;
     private final Paint saturationPaint;
 
-    public ColorPalette(Resources resources, Bitmap bitmap) {
-        super(resources, bitmap);
+    public ColorPalette() {
         this.huePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         this.saturationPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     }
