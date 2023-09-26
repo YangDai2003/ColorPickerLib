@@ -101,47 +101,46 @@ public class ColorPickerView extends FrameLayout {
 
         imageView.setOnTouchListener((v, event) -> {
             int action = event.getAction();
+            int[] imageViewLocation = new int[2];
+            imageView.getLocationOnScreen(imageViewLocation);
+
+            // 获取触摸事件的位置相对于ImageView
+            float touchX = event.getRawX() - imageViewLocation[0];
+            float touchY = event.getRawY() - imageViewLocation[1];
+
+            // 获取十字准心图片的宽度和高度
+            int crosshairWidth = crosshairView.getWidth();
+            int crosshairHeight = crosshairView.getHeight();
+
+            // 计算十字准心图片的左上角位置
+            float crosshairLeft = touchX - (float) crosshairWidth / 2;
+            float crosshairTop = touchY - (float) crosshairHeight / 2;
+
+            // 设置十字准心图片的位置
+            crosshairView.setX(crosshairLeft);
+            crosshairView.setY(crosshairTop);
+
             if (action == MotionEvent.ACTION_DOWN) {
                 // 当按下时，根据updateMode判断是否更新颜色
                 if (updateMode == UpdateMode.ALWAYS) {
-                    updateColor(event);
+                    updateColor(event, touchX, touchY);
                 }
             } else if (action == MotionEvent.ACTION_MOVE) {
                 // 当移动时，根据updateMode判断是否更新颜色
                 if (updateMode == UpdateMode.ALWAYS) {
-                    updateColor(event);
+                    updateColor(event, touchX, touchY);
                 }
             } else if (action == MotionEvent.ACTION_UP) {
                 // 当松手时，只有updateMode为AFTER时才更新颜色
                 if (updateMode == UpdateMode.AFTER) {
-                    updateColor(event);
+                    updateColor(event, touchX, touchY);
                 }
             }
             return true;
         });
     }
 
-    private void updateColor(MotionEvent event) {
-        int[] imageViewLocation = new int[2];
-        imageView.getLocationOnScreen(imageViewLocation);
-
-        // 获取触摸事件的位置相对于ImageView
-        float touchX = event.getRawX() - imageViewLocation[0];
-        float touchY = event.getRawY() - imageViewLocation[1];
-
-        // 获取十字准心图片的宽度和高度
-        int crosshairWidth = crosshairView.getWidth();
-        int crosshairHeight = crosshairView.getHeight();
-
-        // 计算十字准心图片的左上角位置
-        float crosshairLeft = touchX - (float) crosshairWidth / 2;
-        float crosshairTop = touchY - (float) crosshairHeight / 2;
-
-        // 设置十字准心图片的位置
-        crosshairView.setX(crosshairLeft);
-        crosshairView.setY(crosshairTop);
-
-
+    private void updateColor(MotionEvent event, float touchX, float touchY) {
         // 获取 touched pixel
         imageView.invalidate();
         Bitmap bitmap = Bitmap.createBitmap(imageView.getWidth(), imageView.getHeight(), Bitmap.Config.ARGB_8888);
@@ -164,7 +163,6 @@ public class ColorPickerView extends FrameLayout {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     public void setUpdateMode(UpdateMode updateMode) {
