@@ -36,7 +36,6 @@ public class ColorPickerView extends FrameLayout {
     private UpdateMode updateMode;
     private int crosshairSize;
     private int crosshairResource;
-    private int crosshairVisibility;
 
     public ColorPickerView(@NonNull Context context) {
         this(context, null);
@@ -54,7 +53,6 @@ public class ColorPickerView extends FrameLayout {
         updateMode = UpdateMode.values()[updateModeValue];
         crosshairSize = a.getDimensionPixelSize(R.styleable.ColorPickerView_crosshairSize, 100);
         crosshairResource = a.getResourceId(R.styleable.ColorPickerView_crosshairResource, R.drawable.crosshair);
-        crosshairVisibility = a.getInt(R.styleable.ColorPickerView_crosshairVisibility, View.VISIBLE);
         a.recycle();
     }
 
@@ -101,7 +99,6 @@ public class ColorPickerView extends FrameLayout {
         crosshairParams.gravity = Gravity.CENTER;
         crosshairView.setLayoutParams(crosshairParams);
         crosshairView.setBackgroundResource(crosshairResource);
-        crosshairView.setVisibility(crosshairVisibility);
         addView(crosshairView);
 
 
@@ -218,11 +215,6 @@ public class ColorPickerView extends FrameLayout {
     public void setCrosshairResource(int resourceId) {
         crosshairResource = resourceId;
         crosshairView.setBackgroundResource(resourceId);
-    }
-
-    public void setCrosshairVisibility(int visibility) {
-        crosshairVisibility = visibility;
-        crosshairView.setVisibility(visibility);
     }
 
     public ColorInfo getSelectedColor() {
