@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,6 +21,7 @@ import androidx.appcompat.app.AlertDialog;
 @SuppressWarnings("unused")
 public class ColorPickerDialog extends AlertDialog {
     private ColorPickerView colorPickerView;
+    private LinearLayout rootView;
 
     public ColorPickerDialog(@NonNull Context context) {
         this(context, R.style.CustomDialog);
@@ -35,7 +37,24 @@ public class ColorPickerDialog extends AlertDialog {
         View dialogView = LayoutInflater.from(context).inflate(R.layout.colorpicker_dialog, null);
         setView(dialogView);
         colorPickerView = dialogView.findViewById(R.id.colorPickerView);
+        rootView = dialogView.findViewById(R.id.rootView);
         colorPickerView.setImageDrawable(new ColorPalette());
+    }
+
+    public void addView(View view) {
+        rootView.addView(view);
+    }
+
+    public void addView(View view, int index) {
+        rootView.addView(view, index);
+    }
+
+    public void removeView(View view) {
+        rootView.removeView(view);
+    }
+
+    public void removeViewAt(int index) {
+        rootView.removeViewAt(index);
     }
 
     public void setImageDrawable(Drawable drawable) {
@@ -60,10 +79,6 @@ public class ColorPickerDialog extends AlertDialog {
 
     public void setCrosshairBackgroundResource(int resourceId) {
         colorPickerView.setCrosshairResource(resourceId);
-    }
-
-    public void setCrosshairVisibility(int visibility) {
-        colorPickerView.setCrosshairVisibility(visibility);
     }
 
     public void setCrosshairSize(int size) {
@@ -124,6 +139,26 @@ public class ColorPickerDialog extends AlertDialog {
             colorPickerDialog = new ColorPickerDialog(context, themeResId);
         }
 
+        public Builder addView(View view) {
+            colorPickerDialog.addView(view);
+            return this;
+        }
+
+        public Builder addView(View view, int index) {
+            colorPickerDialog.addView(view, index);
+            return this;
+        }
+
+        public Builder removeView(View view) {
+            colorPickerDialog.removeView(view);
+            return this;
+        }
+
+        public Builder removeViewAt(int index) {
+            colorPickerDialog.removeViewAt(index);
+            return this;
+        }
+
         public Builder setImageDrawable(Drawable drawable) {
             colorPickerDialog.setImageDrawable(drawable);
             return this;
@@ -151,11 +186,6 @@ public class ColorPickerDialog extends AlertDialog {
 
         public Builder setCrosshairBackgroundResource(int resourceId) {
             colorPickerDialog.setCrosshairBackgroundResource(resourceId);
-            return this;
-        }
-
-        public Builder setCrosshairVisibility(int visibility) {
-            colorPickerDialog.setCrosshairVisibility(visibility);
             return this;
         }
 

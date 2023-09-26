@@ -47,13 +47,13 @@ public class ColorPickerView extends FrameLayout {
 
     public ColorPickerView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init();
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ColorPickerView);
         int updateModeValue = a.getInt(R.styleable.ColorPickerView_updateMode, 0);
         updateMode = UpdateMode.values()[updateModeValue];
         crosshairSize = a.getDimensionPixelSize(R.styleable.ColorPickerView_crosshairSize, 100);
         crosshairResource = a.getResourceId(R.styleable.ColorPickerView_crosshairResource, R.drawable.crosshair);
         a.recycle();
+        init();
     }
 
     public void initColorInfo() {

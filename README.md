@@ -1,6 +1,8 @@
 # ColorPickerLib
 
-ColorPickerLib 实现了多种颜色选择功能。
+ColorPickerLib 实现了多种颜色选择功能, 包括自定义颜色选择对话框(ColorPickerDialog)、自定义颜色选择视图(ColorPickerView)。
+可以使用标准颜色调色板(ColorPalette)选择颜色，也可以传入自定义Bitmap或Drawable。
+可以高度自定义样式，比如准心的大小、资源，颜色选择器的回调接口，颜色获取的更新频率等。
 
 [![jitpack](https://jitpack.io/v/YangDai2003/ColorPickerLib.svg)](https://jitpack.io/#YangDai2003/ColorPickerLib)
 
