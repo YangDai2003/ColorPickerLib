@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.yangdai.colorpickerlib.ColorPickerDialog;
-import com.yangdai.colorpickerlib.ColorSelectionListener;
+import com.yangdai.colorpickerlib.ColorListener;
 
 /**
  * @author 30415
@@ -29,13 +29,21 @@ public class MainActivity extends AppCompatActivity {
         new ColorPickerDialog.Builder(this)
                 .setIcon(android.R.drawable.sym_def_app_icon)
                 .setTitle("选择颜色")
-                .setPositiveButton("确定", (ColorSelectionListener) (colorInfo, fromUser) -> {
+                .setPositiveButton("确定", (ColorListener) (colorInfo, fromUser) -> {
                     textView.setText(colorInfo.getHexCode());
                     textView.setTextColor(colorInfo.getColor());
                 })
-                .create()
                 .show();
 //        ColorPickerDialog colorPickerDialog = new ColorPickerDialog(this);
 //        colorPickerDialog.show();
+
+//        ColorPickerView colorPickerView = new ColorPickerView(this);
+//        colorPickerView.setImageResource(R.drawable.ic_launcher_foreground);
+//        colorPickerView.setOnColorSelectedListener(new ColorListener() {
+//            @Override
+//            public void onColorSelected(ColorInfo colorInfo, boolean fromUser) {
+//
+//            }
+//        });
     }
 }

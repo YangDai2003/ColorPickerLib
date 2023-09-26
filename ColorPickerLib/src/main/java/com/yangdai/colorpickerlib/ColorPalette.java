@@ -17,6 +17,7 @@ import androidx.annotation.Nullable;
 /**
  * ColorPalette 是一个使用（色调、饱和度、明度）颜色模型构建的默认可绘制调色板，
  * 用于交替表示 RGB 颜色模型。
+ *
  * @author 30415
  */
 public class ColorPalette extends Drawable {

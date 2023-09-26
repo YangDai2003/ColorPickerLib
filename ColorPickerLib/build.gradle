@@ -11,8 +11,8 @@ android {
         minSdk 26
 
         consumerProguardFiles "consumer-rules.pro"
-        versionCode 102
-        versionName '1.0.2'
+        versionCode 106
+        versionName '1.0.6'
     }
 
     buildTypes {
@@ -40,7 +40,7 @@ afterEvaluate {
                 // You can then customize attributes of the publication as shown below.
                 groupId = 'com.github.YangDai2003'
                 artifactId = 'ColorPicker'
-                version = '1.0.2'
+                version = '1.0.6'
             }
         }
     }

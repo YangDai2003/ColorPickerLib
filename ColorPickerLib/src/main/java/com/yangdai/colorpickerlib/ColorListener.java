@@ -5,7 +5,7 @@ package com.yangdai.colorpickerlib;
  *
  * @author 30415
  */
-public interface ColorSelectionListener {
+public interface ColorListener {
 
     /**
      * 当颜色被选择时调用。

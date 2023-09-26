@@ -14,6 +14,7 @@ import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
@@ -25,11 +26,12 @@ import java.io.File;
 /**
  * @author 30415
  */
+@SuppressWarnings("unused")
 public class ColorPickerView extends FrameLayout {
 
     private ImageView imageView;
     private View crosshairView;
-    private ColorSelectionListener onColorSelectedListener;
+    private ColorListener onColorSelectedListener;
     private ColorInfo colorInfo;
     private UpdateMode updateMode;
 
@@ -50,6 +52,38 @@ public class ColorPickerView extends FrameLayout {
         a.recycle();
     }
 
+    public void initColorInfo() {
+        ViewTreeObserver viewTreeObserver = imageView.getViewTreeObserver();
+        viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                imageView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+
+                try {
+                    int centerX = imageView.getWidth() / 2;
+                    int centerY = imageView.getHeight() / 2;
+
+                    Bitmap bitmap = Bitmap.createBitmap(imageView.getWidth(), imageView.getHeight(), Bitmap.Config.ARGB_8888);
+                    imageView.draw(new Canvas(bitmap));
+                    int pixel = bitmap.getPixel(centerX, centerY);
+
+                    int a = Color.alpha(pixel);
+                    int r = Color.red(pixel);
+                    int g = Color.green(pixel);
+                    int b = Color.blue(pixel);
+
+                    int selectedColor = Color.argb(a, r, g, b);
+                    colorInfo = new ColorInfo(selectedColor);
+                    if (onColorSelectedListener != null) {
+                        onColorSelectedListener.onColorSelected(colorInfo, false);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
     @SuppressLint("ClickableViewAccessibility")
     private void init() {
         imageView = new ImageView(getContext());
@@ -63,6 +97,7 @@ public class ColorPickerView extends FrameLayout {
         crosshairView.setLayoutParams(crosshairParams);
         crosshairView.setBackgroundResource(R.drawable.crosshair);
         addView(crosshairView);
+
 
         imageView.setOnTouchListener((v, event) -> {
             int action = event.getAction();
@@ -132,35 +167,39 @@ public class ColorPickerView extends FrameLayout {
 
     }
 
-    public void setUpdateMode(UpdateMode updateMode){
+    public void setUpdateMode(UpdateMode updateMode) {
         this.updateMode = updateMode;
     }
 
     public void setImageBitmap(Bitmap bitmap) {
         imageView.setImageBitmap(bitmap);
+        initColorInfo();
     }
 
     public void setImageResource(int resourceId) {
         imageView.setImageResource(resourceId);
+        initColorInfo();
     }
 
     public void setImageDrawable(Drawable drawable) {
         imageView.setImageDrawable(drawable);
+        initColorInfo();
     }
 
     public void setImageFile(String filePath) {
         File file = new File(filePath);
         if (file.exists()) {
             Bitmap bitmap = BitmapFactory.decodeFile(filePath);
-            imageView.setImageBitmap(bitmap);
+            setImageBitmap(bitmap);
         }
     }
 
     public void setImageUri(Uri imageUri) {
         imageView.setImageURI(imageUri);
+        initColorInfo();
     }
 
-    public void setOnColorSelectedListener(ColorSelectionListener listener) {
+    public void setOnColorSelectedListener(ColorListener listener) {
         this.onColorSelectedListener = listener;
     }
 

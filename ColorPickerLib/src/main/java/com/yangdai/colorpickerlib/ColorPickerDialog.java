@@ -2,7 +2,9 @@ package com.yangdai.colorpickerlib;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -11,8 +13,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
 /**
+ * 这是一个用于颜色选择的自定义Dialog，默认使用ColorPalette
+ *
  * @author 30415
  */
+@SuppressWarnings("unused")
 public class ColorPickerDialog extends AlertDialog {
     private ColorPickerView colorPickerView;
 
@@ -27,17 +32,45 @@ public class ColorPickerDialog extends AlertDialog {
 
     private void init(Context context) {
         @SuppressLint("InflateParams")
-        View dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_colorpickerview, null);
+        View dialogView = LayoutInflater.from(context).inflate(R.layout.colorpicker_dialog, null);
+        setView(dialogView);
         colorPickerView = dialogView.findViewById(R.id.colorPickerView);
         colorPickerView.setImageDrawable(new ColorPalette());
-        setView(dialogView);
     }
 
     public void setImageDrawable(Drawable drawable) {
         colorPickerView.setImageDrawable(drawable);
     }
 
-    public void setOnColorSelectedListener(ColorSelectionListener listener) {
+    public void setImageBitmap(Bitmap bitmap) {
+        colorPickerView.setImageBitmap(bitmap);
+    }
+
+    public void setImageResource(int resourceId) {
+        colorPickerView.setImageResource(resourceId);
+    }
+
+    public void setImageUri(Uri uri) {
+        colorPickerView.setImageUri(uri);
+    }
+
+    public void setImageFile(String path) {
+        colorPickerView.setImageFile(path);
+    }
+
+    public void setCrosshairBackgroundResource(int resourceId) {
+        colorPickerView.setCrosshairBackgroundResource(resourceId);
+    }
+
+    public void setCrosshairVisibility(int visibility) {
+        colorPickerView.setCrosshairVisibility(visibility);
+    }
+
+    public void setCrosshairSize(int size) {
+        colorPickerView.setCrosshairSize(size);
+    }
+
+    public void setOnColorSelectedListener(ColorListener listener) {
         colorPickerView.setOnColorSelectedListener(listener);
     }
 
@@ -49,7 +82,7 @@ public class ColorPickerDialog extends AlertDialog {
         setButton(BUTTON_POSITIVE, getContext().getString(textId), listener);
     }
 
-    public void setPositiveButton(CharSequence text, ColorSelectionListener listener) {
+    public void setPositiveButton(CharSequence text, ColorListener listener) {
         setButton(BUTTON_POSITIVE, text, (dialog, which) -> {
             ColorInfo colorInfo = colorPickerView.getSelectedColor();
             if (colorInfo == null) {
@@ -59,7 +92,7 @@ public class ColorPickerDialog extends AlertDialog {
         });
     }
 
-    public void setPositiveButton(int textId, ColorSelectionListener listener) {
+    public void setPositiveButton(int textId, ColorListener listener) {
         setPositiveButton(getContext().getString(textId), listener);
     }
 
@@ -96,19 +129,56 @@ public class ColorPickerDialog extends AlertDialog {
             return this;
         }
 
-        public Builder setOnColorSelectedListener(ColorSelectionListener listener) {
+        public Builder setImageBitmap(Bitmap bitmap) {
+            colorPickerDialog.setImageBitmap(bitmap);
+            return this;
+        }
+
+        public Builder setImageResource(int resourceId) {
+            colorPickerDialog.setImageResource(resourceId);
+            return this;
+        }
+
+        public Builder setImageUri(Uri uri) {
+            colorPickerDialog.setImageUri(uri);
+            return this;
+        }
+
+        public Builder setImageFile(String file) {
+            colorPickerDialog.setImageFile(file);
+            return this;
+        }
+
+        public Builder setCrosshairBackgroundResource(int resourceId) {
+            colorPickerDialog.setCrosshairBackgroundResource(resourceId);
+            return this;
+        }
+
+        public Builder setCrosshairVisibility(int visibility) {
+            colorPickerDialog.setCrosshairVisibility(visibility);
+            return this;
+        }
+
+        public Builder setCrosshairSize(int size) {
+            colorPickerDialog.setCrosshairSize(size);
+            return this;
+        }
+
+        public Builder setOnColorSelectedListener(ColorListener listener) {
             colorPickerDialog.setOnColorSelectedListener(listener);
             return this;
         }
 
-        public Builder setPositiveButton(CharSequence text, ColorSelectionListener listener) {
+        public Builder setPositiveButton(CharSequence text, ColorListener listener) {
             colorPickerDialog.setPositiveButton(text, listener);
             return this;
         }
-        public Builder setPositiveButton(int textId, ColorSelectionListener listener) {
+
+        public Builder setPositiveButton(int textId, ColorListener listener) {
             colorPickerDialog.setPositiveButton(textId, listener);
             return this;
         }
+
         @Override
         public Builder setPositiveButton(CharSequence text, OnClickListener listener) {
             colorPickerDialog.setPositiveButton(text, listener);

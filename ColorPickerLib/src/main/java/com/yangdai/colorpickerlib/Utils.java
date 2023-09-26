@@ -7,7 +7,7 @@ import androidx.annotation.ColorInt;
 import java.util.Locale;
 
 /**
- * 一个用于改变颜色，尺寸形式的工具类。
+ * 一个用于改变颜色的工具类。
  */
 class Utils {
     /**
