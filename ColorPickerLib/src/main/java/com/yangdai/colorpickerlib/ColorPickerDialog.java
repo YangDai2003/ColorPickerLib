@@ -59,7 +59,7 @@ public class ColorPickerDialog extends AlertDialog {
     }
 
     public void setCrosshairBackgroundResource(int resourceId) {
-        colorPickerView.setCrosshairBackgroundResource(resourceId);
+        colorPickerView.setCrosshairResource(resourceId);
     }
 
     public void setCrosshairVisibility(int visibility) {

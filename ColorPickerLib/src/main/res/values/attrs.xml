@@ -6,7 +6,7 @@
             <enum name="after" value="1" />
         </attr>
         <attr name="crosshairSize" format="dimension" />
-        <attr name="crosshairBackgroundResource" format="integer" />
+        <attr name="crosshairResource" format="reference" />
         <attr name="crosshairVisibility" format="enum">
             <enum name="visible" value="0" />
             <enum name="invisible" value="1" />
