@@ -5,5 +5,12 @@
             <enum name="always" value="0" />
             <enum name="after" value="1" />
         </attr>
+        <attr name="crosshairSize" format="dimension" />
+        <attr name="crosshairBackgroundResource" format="integer" />
+        <attr name="crosshairVisibility" format="enum">
+            <enum name="visible" value="0" />
+            <enum name="invisible" value="1" />
+            <enum name="gone" value="2" />
+        </attr>
     </declare-styleable>
 </resources>

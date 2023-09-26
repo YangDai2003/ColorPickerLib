@@ -34,6 +34,9 @@ public class ColorPickerView extends FrameLayout {
     private ColorListener onColorSelectedListener;
     private ColorInfo colorInfo;
     private UpdateMode updateMode;
+    private int crosshairSize;
+    private int crosshairBackgroundResource;
+    private int crosshairVisibility;
 
     public ColorPickerView(@NonNull Context context) {
         this(context, null);
@@ -49,6 +52,9 @@ public class ColorPickerView extends FrameLayout {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ColorPickerView);
         int updateModeValue = a.getInt(R.styleable.ColorPickerView_updateMode, 0);
         updateMode = UpdateMode.values()[updateModeValue];
+        crosshairSize = a.getDimensionPixelSize(R.styleable.ColorPickerView_crosshairSize, 100);
+        crosshairBackgroundResource = a.getResourceId(R.styleable.ColorPickerView_crosshairBackgroundResource, R.drawable.crosshair);
+        crosshairVisibility = a.getInt(R.styleable.ColorPickerView_crosshairVisibility, View.VISIBLE);
         a.recycle();
     }
 
@@ -91,11 +97,11 @@ public class ColorPickerView extends FrameLayout {
         addView(imageView);
 
         crosshairView = new View(getContext());
-        int crosshairSize = 100;
         LayoutParams crosshairParams = new LayoutParams(crosshairSize, crosshairSize);
         crosshairParams.gravity = Gravity.CENTER;
         crosshairView.setLayoutParams(crosshairParams);
-        crosshairView.setBackgroundResource(R.drawable.crosshair);
+        crosshairView.setBackgroundResource(crosshairBackgroundResource);
+        crosshairView.setVisibility(crosshairVisibility);
         addView(crosshairView);
 
 
@@ -202,6 +208,7 @@ public class ColorPickerView extends FrameLayout {
     }
 
     public void setCrosshairSize(int size) {
+        crosshairSize = size;
         ViewGroup.LayoutParams layoutParams = crosshairView.getLayoutParams();
         layoutParams.width = size;
         layoutParams.height = size;
@@ -209,10 +216,12 @@ public class ColorPickerView extends FrameLayout {
     }
 
     public void setCrosshairBackgroundResource(int resourceId) {
+        crosshairBackgroundResource = resourceId;
         crosshairView.setBackgroundResource(resourceId);
     }
 
     public void setCrosshairVisibility(int visibility) {
+        crosshairVisibility = visibility;
         crosshairView.setVisibility(visibility);
     }
 
